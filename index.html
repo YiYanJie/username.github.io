@@ -1,1 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>09-KATE自定义滚动条</title>
+    <style>
+        body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;font-family:"Microsoft Yahei";}
+        bl,ul,li{margin:0;padding: 0;list-style:none;}
+        img{border:none;}
+        body{
+            height: 1500px;
+        }
+        #wrap{
+            position: relative;
+            width: 380px;
+            height: 530px;
+            margin: 50px auto;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .txt{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 340px;
+            height: 1060px;
+            padding: 0 10px;
+            background: url(img/1.jpg);
+        }
+        .scroll{
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+            height: 1000px;
+            background-color: #ccc;
+            box-shadow:5px -5px 5px #bbb inset;
+        }
+        .scroll .scbtn{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 265px;
+            border-radius: 20px;
+            background-color: #999;
+        }
+        .scroll .scbtn:hover{
+            background-color: dimgray;
+        }
+    </style>
+</head>
+<body>
+    <div id="wrap">
+        <div class="txt" id = "txt">
+        </div>
+        <div class="scroll" id = "scroll">
+            <div class="scbtn" id="scbtn"></div>
+        </div>
+    </div>
+    <script>
+        var oWrap = document.getElementById("wrap"),
+            oTxt = document.getElementById("txt"),
+            oScbtn = document.getElementById("scbtn"),
+            speedT = 10,
+            speedS = speedT/2,
+            maxTop = oWrap.clientHeight - oTxt.clientHeight,
+            minTop = oTop = 0;
 
+        mouseWheel(oWrap,wheelBind);
+        addEvent(oScbtn,"mousedown",mouseDown);
+        function setTop(direction,moveValue){
+            if(direction > 0){
+                oTop += moveValue;
+                oTop = Math.min(0,oTop);
+            }else{
+                oTop -= moveValue;
+                oTop = Math.max(maxTop,oTop);
+            }
+            oScbtn.style.top = -oTop/2 + "px";
+            oTxt.style.top = oTop + "px";
+        }
+        function wheelBind(e,direction){
+            setTop(direction,speedT);
+            return false;
+        }
+        function mouseDown(e){
+            e = e || window.event;
+            var eY = e.pageY || document.documentElement.scrollTop + e.clientY;
+            var eYbox = eY - this.offsetTop;
+            var dTop = this.offsetTop;
+            function mouseMove(e){
+                e = e || window.event;
+                var eY = e.pageY || document.documentElement.scrollTop + e.clientY;
+                var dValue = eY - eYbox;
+                if(dValue <= minTop){
+                    dValue = minTop;
+                }else if(dValue >= -maxTop/2){
+                    dValue = -maxTop/2;
+                }
+                oScbtn.style.top = dValue + "px";
+                oTxt.style.top = -dValue * 2 + "px";
+                oTop = -dValue * 2;
+            }
+            function mouseUp(){
+                removeEvent(document,'mousemove',mouseMove);
+                removeEvent(document,'mouseup',mouseUp);
+            }
+            addEvent(document,"mousemove",mouseMove);
+            addEvent(document,"mouseup",mouseUp);
+        }
+        //滚轮封装
+        function mouseWheel(obj, mFn) {
+            function fn(e) {
+                e = e || window.event;
+                var direction = e.wheelDelta / 120 || -e.detail / 3 ;
+                if(mFn.call(obj, e, direction) === false){
+                    e.preventDefault ? e.preventDefault() : e.returnValue = false;
+                }
+            }
+            var type = document.onmousewheel === null?"mousewheel":"DOMMouseScroll";
+            addEvent(obj,type,fn);
+        }
+        //监听封装
+        function addEvent(ele,ev,fn,isbub){
+            isbub = isbub || false;
+            ele.attachEvent ? ele.attachEvent("on"+ev,fn) : ele.addEventListener(ev,fn,isbub);
+        }
+        function removeEvent(ele,ev,fn,isbub){
+            isbub = isbub || false;
+            ele.detachEvent ? ele.detachEvent("on"+ev,fn) : ele.removeEventListener(ev,fn,isbub);
+        }
+
+    </script>
+</body>
+</html>
