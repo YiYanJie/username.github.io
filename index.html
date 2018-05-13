@@ -1,137 +1,325 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>09-KATE自定义滚动条</title>
-    <style>
-        body,dl,dd,p,h1,h2,h3,h4,h5,h6{margin:0;font-family:"Microsoft Yahei";}
-        bl,ul,li{margin:0;padding: 0;list-style:none;}
-        img{border:none;}
-        body{
-            height: 1500px;
+    <meta name="Generator" content="EditPlus®">
+    <meta name="Author" content="劫">
+    <meta name="Keywords" content="第十一章">
+    <meta name="Description" content="作业一">
+    <title>Title</title>
+    <style type="text/css">
+        body, ul, li, p, a, h2, h3, h1 {
+            margin: 0px;
+            padding: 0px;
         }
-        #wrap{
-            position: relative;
-            width: 380px;
-            height: 530px;
-            margin: 50px auto;
-            border-radius: 5px;
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            font: 14px/1.5 "Microsoft Yahei";
+        }
+
+        .clearfix:after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+        .wrap{
             overflow: hidden;
+            position: relative;
+            width: 700px;
+            height: 700px;
+            margin: 50px auto;
+            background-color:#EFEFEF;
         }
-        .txt{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 340px;
-            height: 1060px;
-            padding: 0 10px;
-            background: url(img/1.jpg);
+        .content{
+            position:relative;
+            padding: 10px;
+            user-select: none;
         }
-        .scroll{
+        .content li{
+            height: auto;
+            padding: 10px 30px 10px 0px;
+            line-height: 35px;
+            border-bottom: 1px solid #FFF;
+            font-size: 16px;
+            user-select: none;
+			-moz-user-select: none;
+            -ms-user-select: none;
+            -webkit-user-select: none;
+        }
+        .wrap .scrollbar{
             position: absolute;
-            top: 0;
-            right: 0;
+            width: 22px;
+            height: 100%;
+            top: 0px;
+            right: 0px;
+			padding: 0px 0px;
+            background-image: linear-gradient(to left, #888 0%, #BFBFBF 10%, #CACACA 25%, #CCC 50%
+                                    , #CACACA 75%, #BFBFBF 90%, #888 100%);
+            border-radius: 11px;
+			box-shadow:0 0 8px 0 #888 inset;
+			cursor: default;
+        }
+        .scrollbar .scrollButton{
+            position:absolute;
             width: 20px;
-            height: 1000px;
-            background-color: #ccc;
-            box-shadow:5px -5px 5px #bbb inset;
-        }
-        .scroll .scbtn{
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 20px;
-            height: 265px;
-            border-radius: 20px;
-            background-color: #999;
-        }
-        .scroll .scbtn:hover{
-            background-color: dimgray;
+            height: 160px;
+            top:0px;
+            left:0px;
+            margin: 0px 1px;
+            border-radius: 11px;
+            background-color: #EEE;
         }
     </style>
 </head>
 <body>
-    <div id="wrap">
-        <div class="txt" id = "txt">
-        </div>
-        <div class="scroll" id = "scroll">
-            <div class="scbtn" id="scbtn"></div>
+    <div class="wrap">
+        <ul class="content" >
+            <li>
+                <p>1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <span>生命就像一盒巧克力，结果往往出人意料。</span>
+            </li>
+            <li>
+                <p>2、Stupid is as stupid does.</p>
+                <span>蠢人做蠢事，也可理解为傻人有傻福。</span>
+            </li>
+            <li>
+                <p>3、Miracles happen every day.</p>
+                <span>奇迹每天都在发生。</span>
+            </li>
+            <li>
+                <p>4、it made me look like a duck in water.</p>
+                <span>它让我如鱼得水。</span>
+            </li>
+            <li>
+                <p>5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <span>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</span>
+            </li>
+            <li>
+                <p>6、Death is just a part of life, something we're all destined to do.</p>
+                <span>死亡是生命的一部分，是我们注定要做的一件事。</span>
+            </li>
+            <li>
+                <p>7、You have got to put the past behind you before you can move on.</p>
+                <span>放下包袱，继续前进。</span>
+            </li>
+            <li>
+                <p>8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <span>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</span>
+            </li>
+            <li>
+                <p>9、If there is anything you need, I will not be far away.</p>
+                <span>只要你需要，我就在这里。</span>
+            </li>
+            <li>
+                <p>1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <span>生命就像一盒巧克力，结果往往出人意料。</span>
+            </li>
+            <li>
+                <p>2、Stupid is as stupid does.</p>
+                <span>蠢人做蠢事，也可理解为傻人有傻福。</span>
+            </li>
+            <li>
+                <p>3、Miracles happen every day.</p>
+                <span>奇迹每天都在发生。</span>
+            </li>
+            <li>
+                <p>4、it made me look like a duck in water.</p>
+                <span>它让我如鱼得水。</span>
+            </li>
+            <li>
+                <p>5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <span>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</span>
+            </li>
+            <li>
+                <p>6、Death is just a part of life, something we're all destined to do.</p>
+                <span>死亡是生命的一部分，是我们注定要做的一件事。</span>
+            </li>
+            <li>
+                <p>7、You have got to put the past behind you before you can move on.</p>
+                <span>放下包袱，继续前进。</span>
+            </li>
+            <li>
+                <p>8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <span>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</span>
+            </li>
+            <li>
+                <p>9、If there is anything you need, I will not be far away.</p>
+                <span>只要你需要，我就在这里。</span>
+            </li>
+            <li>
+                <p>1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <span>生命就像一盒巧克力，结果往往出人意料。</span>
+            </li>
+            <li>
+                <p>2、Stupid is as stupid does.</p>
+                <span>蠢人做蠢事，也可理解为傻人有傻福。</span>
+            </li>
+            <li>
+                <p>3、Miracles happen every day.</p>
+                <span>奇迹每天都在发生。</span>
+            </li>
+            <li>
+                <p>4、it made me look like a duck in water.</p>
+                <span>它让我如鱼得水。</span>
+            </li>
+            <li>
+                <p>5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <span>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</span>
+            </li>
+            <li>
+                <p>6、Death is just a part of life, something we're all destined to do.</p>
+                <span>死亡是生命的一部分，是我们注定要做的一件事。</span>
+            </li>
+            <li>
+                <p>7、You have got to put the past behind you before you can move on.</p>
+                <span>放下包袱，继续前进。</span>
+            </li>
+            <li>
+                <p>8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <span>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</span>
+            </li>
+            <li>
+                <p>9、If there is anything you need, I will not be far away.</p>
+                <span>只要你需要，我就在这里。</span>
+            </li>
+            <li>
+                <p>1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <span>生命就像一盒巧克力，结果往往出人意料。</span>
+            </li>
+            <li>
+                <p>2、Stupid is as stupid does.</p>
+                <span>蠢人做蠢事，也可理解为傻人有傻福。</span>
+            </li>
+            <li>
+                <p>3、Miracles happen every day.</p>
+                <span>奇迹每天都在发生。</span>
+            </li>
+            <li>
+                <p>4、it made me look like a duck in water.</p>
+                <span>它让我如鱼得水。</span>
+            </li>
+            <li>
+                <p>5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <span>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</span>
+            </li>
+            <li>
+                <p>6、Death is just a part of life, something we're all destined to do.</p>
+                <span>死亡是生命的一部分，是我们注定要做的一件事。</span>
+            </li>
+            <li>
+                <p>7、You have got to put the past behind you before you can move on.</p>
+                <span>放下包袱，继续前进。</span>
+            </li>
+            <li>
+                <p>8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <span>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</span>
+            </li>
+            <li>
+                <p>9、If there is anything you need, I will not be far away.</p>
+                <span>只要你需要，我就在这里。</span>
+            </li>
+            <li>
+                <p>1、Life was like a box of chocolates, you never know what you're going to get.</p>
+                <span>生命就像一盒巧克力，结果往往出人意料。</span>
+            </li>
+            <li>
+                <p>2、Stupid is as stupid does.</p>
+                <span>蠢人做蠢事，也可理解为傻人有傻福。</span>
+            </li>
+            <li>
+                <p>3、Miracles happen every day.</p>
+                <span>奇迹每天都在发生。</span>
+            </li>
+            <li>
+                <p>4、it made me look like a duck in water.</p>
+                <span>它让我如鱼得水。</span>
+            </li>
+            <li>
+                <p>5、I don't know if we each have a destiny, or if we're all just floating around accidental—like on a breeze.</p>
+                <span>我不懂我们是否有着各自的命运，还是只是到处随风飘荡。</span>
+            </li>
+            <li>
+                <p>6、Death is just a part of life, something we're all destined to do.</p>
+                <span>死亡是生命的一部分，是我们注定要做的一件事。</span>
+            </li>
+            <li>
+                <p>7、You have got to put the past behind you before you can move on.</p>
+                <span>放下包袱，继续前进。</span>
+            </li>
+            <li>
+                <p>8、It was like just before the sun goes to bed down on the bayou. There was a million sparkles on the river.</p>
+                <span>就像太阳在落山前映射在河口上，有无数的亮点在闪闪发光。</span>
+            </li>
+            <li>
+                <p>9、If there is anything you need, I will not be far away.</p>
+                <span>只要你需要，我就在这里。</span>
+            </li>
+        </ul>
+        <div class="scrollbar">
+            <div class="scrollButton"></div>
         </div>
     </div>
-    <p><a href="/yiyanjie.html"></a></p>
     <script>
-        var oWrap = document.getElementById("wrap"),
-            oTxt = document.getElementById("txt"),
-            oScbtn = document.getElementById("scbtn"),
-            speedT = 10,
-            speedS = speedT/2,
-            maxTop = oWrap.clientHeight - oTxt.clientHeight,
-            minTop = oTop = 0;
+        var oScrollButton = document.getElementsByClassName("scrollButton")[0],
+            oContent = document.getElementsByClassName("content")[0],
+            oScrollBar = document.getElementsByClassName("scrollbar")[0];
 
-        mouseWheel(oWrap,wheelBind);
-        addEvent(oScbtn,"mousedown",mouseDown);
-        function setTop(direction,moveValue){
-            if(direction > 0){
-                oTop += moveValue;
-                oTop = Math.min(0,oTop);
-            }else{
-                oTop -= moveValue;
-                oTop = Math.max(maxTop,oTop);
-            }
-            oScbtn.style.top = -oTop/2 + "px";
-            oTxt.style.top = oTop + "px";
-        }
-        function wheelBind(e,direction){
-            setTop(direction,speedT);
-            return false;
-        }
-        function mouseDown(e){
+        addEvent(oScrollButton,"mousedown",mousedown);
+        function mousedown(e){
             e = e || window.event;
-            var eY = e.pageY || document.documentElement.scrollTop + e.clientY;
-            var eYbox = eY - this.offsetTop;
-            var dTop = this.offsetTop;
-            function mouseMove(e){
+            var y = e.clientY,
+                offsetTop = this.offsetTop,
+                maxOffsetTop = oScrollBar.offsetHeight-oScrollButton.offsetHeight,
+                realheight = oContent.offsetHeight - oScrollBar.offsetHeight;
+
+            removeEvent(document,"mousemove",mousemove);
+            addEvent(document,"mousemove",mousemove);
+            function mousemove(e) {
                 e = e || window.event;
-                var eY = e.pageY || document.documentElement.scrollTop + e.clientY;
-                var dValue = eY - eYbox;
-                if(dValue <= minTop){
-                    dValue = minTop;
-                }else if(dValue >= -maxTop/2){
-                    dValue = -maxTop/2;
+                var moveY = e.clientY - y;
+                if(offsetTop + moveY >= 0 && offsetTop + moveY <= maxOffsetTop){
+                    oScrollButton.style.top = offsetTop + moveY + "px";
+                    oContent.style.top = -((oScrollButton.offsetTop) * realheight/maxOffsetTop) + "px";
                 }
-                oScbtn.style.top = dValue + "px";
-                oTxt.style.top = -dValue * 2 + "px";
-                oTop = -dValue * 2;
+
+            };
+
+            addEvent(document,"mouseup",removemove);
+
+            function removemove(){
+                removeEvent(document,"mousemove",mousemove);
+                removeEvent(document,"mouseup",removemove);
             }
-            function mouseUp(){
-                removeEvent(document,'mousemove',mouseMove);
-                removeEvent(document,'mouseup',mouseUp);
-            }
-            addEvent(document,"mousemove",mouseMove);
-            addEvent(document,"mouseup",mouseUp);
-        }
-        //滚轮封装
-        function mouseWheel(obj, mFn) {
-            function fn(e) {
-                e = e || window.event;
-                var direction = e.wheelDelta / 120 || -e.detail / 3 ;
-                if(mFn.call(obj, e, direction) === false){
-                    e.preventDefault ? e.preventDefault() : e.returnValue = false;
-                }
-            }
-            var type = document.onmousewheel === null?"mousewheel":"DOMMouseScroll";
-            addEvent(obj,type,fn);
-        }
-        //监听封装
-        function addEvent(ele,ev,fn,isbub){
-            isbub = isbub || false;
-            ele.attachEvent ? ele.attachEvent("on"+ev,fn) : ele.addEventListener(ev,fn,isbub);
-        }
-        function removeEvent(ele,ev,fn,isbub){
-            isbub = isbub || false;
-            ele.detachEvent ? ele.detachEvent("on"+ev,fn) : ele.removeEventListener(ev,fn,isbub);
         }
 
+        function addEvent(obj,ev,fn){
+            if(obj.attachEvent){
+                //兼容IE
+                obj.attachEvent("on"+ev,fn);
+            }
+            else{
+                obj.addEventListener(ev,fn,false);
+            }
+        }
+
+        function removeEvent(obj,ev,fn){
+            if(obj.detachEvent){
+                //兼容IE
+                obj.detachEvent("on"+ev,fn);
+            }
+            else{
+                obj.removeEventListener(ev,fn);
+            }
+        }
     </script>
 </body>
 </html>
