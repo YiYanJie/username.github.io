@@ -1,9 +1,8 @@
-
 <!DOCTYPE HTML>
 <html onselectstart="return false">
     <head>
         <meta charset="UTF-8">
-        <title>自定义滚动条</title>
+        <title>Title</title>
         <meta name="keywords" content="关键词">
         <meta name="description" content="描述">
         <meta name="author" content="劫">
@@ -39,20 +38,24 @@
                 width:4px;
                 height:698px;
                 background-color: #ccc;
-                box-shadow:0 0 6px 0 #666 inset;
+                box-shadow:0 0 6px 0 #efefef outset;
                 border-radius:2px;
-                border:1px solid #888;
+                border:1px solid #eee;
             }
             #wrap .scrollbar.hide{
                 display: none;
             }
             #wrap .scrollbar i{
+				display:none;
                 position: absolute;
                 width:100%;
                 height:30px;
-                background: #eee;
+                background: #888;
                 border-radius: 10px;
             }
+			#wrap:hover .scrollbar i{
+				display:block;
+			}
         </style>
     </head>
     <body >
@@ -244,7 +247,7 @@
                 <i></i>
             </div>
         </div>
-	    <p><a href="/yiyanjie.html">小球弹弹弹</a></p>	
+		<p><a href="/yiyanjie.html">小球弹弹弹</a></p>
         <script>
             (function(){
 
